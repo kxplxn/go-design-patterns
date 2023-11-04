@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // BookType represents the type of book
 type BookType int
 
@@ -28,6 +30,12 @@ type Library struct {
 // for each book in the collection
 func (l *Library) IterateBooks(f func(Book) error) {
 	// TODO: implement IterateBooks
+	for _, b := range l.Collection {
+		err := f(b)
+		if err != nil {
+			fmt.Println("Error:", err)
+		}
+	}
 }
 
 // TODO: createIterator returns a BookIterator that can access the book
