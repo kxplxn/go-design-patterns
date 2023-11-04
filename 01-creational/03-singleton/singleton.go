@@ -1,8 +1,9 @@
 package main
 
-// TODO: use the "sync" package for the Once API
+// use the "sync" package for the Once API
 import (
 	"fmt"
+	"sync"
 )
 
 // MyLogger is the struct we want to make a singleton
@@ -23,15 +24,16 @@ func (l *MyLogger) SetLogLevel(level int) {
 // the logger instance
 var logger *MyLogger
 
-// TODO: use the sync package to enforce goroutine safety
+// use the sync package to enforce goroutine safety
+var once sync.Once
 
-// TODO: the getLoggerInstance function provides global access to the
+// the getLoggerInstance function provides global access to the
 // logger class instance
 func getLoggerInstance() *MyLogger {
-	if logger == nil {
+	once.Do(func() {
 		fmt.Println("Creating logger instance...")
 		logger = &MyLogger{}
-	}
+	})
 	fmt.Println("Returning logger instance...")
 	return logger
 }
