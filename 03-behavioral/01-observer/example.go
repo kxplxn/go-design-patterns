@@ -3,20 +3,26 @@ package main
 func main() {
 	// Construct two DataListener observers and
 	// give each one a name
-	_ = DataListener{
+	listener1 := DataListener{
 		Name: "Listener 1",
 	}
-	_ = DataListener{
+	listener2 := DataListener{
 		Name: "Listener 2",
 	}
 
 	// Create the DataSubject that the listeners will observe
-	_ = &DataSubject{}
-	// TODO: Register each listener with the DataSubject
+	subj := &DataSubject{}
 
-	// TODO: Change the data in the DataSubject - this will cause the
+	// Register each listener with the DataSubject
+	subj.registerObserver(listener1)
+	subj.registerObserver(listener2)
+
+	// Change the data in the DataSubject - this will cause the
 	// onUpdate method of each listener to be called
+	subj.ChangeItem("Saturday!")
+	subj.ChangeItem("Sunday!")
 
-	// TODO: Try to unregister one of the observers
-
+	// Unregister one of the observers
+	subj.unregisterObserver(listener2)
+	subj.ChangeItem("Monday!")
 }
