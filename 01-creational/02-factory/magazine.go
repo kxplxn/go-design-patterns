@@ -14,5 +14,11 @@ func (m magazine) String() string {
 
 // the createMagazine function returns a new Magazine object
 func createMagazine(name string, pages int, publisher string) iPublication {
-	return &magazine{}
+	return &magazine{
+		publication: publication{
+			name:      name,
+			pages:     pages,
+			publisher: publisher,
+		},
+	}
 }

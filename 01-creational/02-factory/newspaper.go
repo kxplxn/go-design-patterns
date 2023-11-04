@@ -14,5 +14,11 @@ func (n newspaper) String() string {
 
 // the createNewspaper function returns a new Newspaper object
 func createNewspaper(name string, pages int, publisher string) iPublication {
-	return &newspaper{}
+	return &newspaper{
+		publication: publication{
+			name:      name,
+			pages:     pages,
+			publisher: publisher,
+		},
+	}
 }
